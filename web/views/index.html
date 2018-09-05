@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/semantic/dist/semantic.min.css">
+    <link rel="stylesheet" href="./index.css">
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/semantic/dist/semantic.min.js"></script>
+
+    <script src="/node_modules/art-template/lib/template-web.js"></script>
+    <script src="./index.js"></script>
+</head>
+<body>
+    <h1>图书列表</h1>
+    <button class="ui primary button" id="add">
+        添加图书
+    </button>
+    <table class="ui celled striped  red table">
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>书籍名称</th>
+                <th>价格</th>
+                <th>创建时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody id="tbd">    
+        </tbody>
+      
+      </table>
+     
+      <!--弹出层 -->
+      <div class="ui tiny modal">
+            <div class="header">
+                    添加图书
+            </div>
+            <div class="image content">
+              <div class="description">
+                    <form class="ui form">
+                        <div class="field">
+                            <label>名称</label>
+                            <input type="text" name="bname" placeholder="请输入英雄名称">
+                        </div>
+                        <div class="field">
+                            <label>价格</label>
+                            <input type="text" name="bprice" placeholder="请输入价格">
+                        </div>
+                    </form>
+              </div>
+            </div>
+            <div class="actions">
+              <div class="ui black deny button">
+                取消
+              </div>
+              <div class="ui positive right button" id="addBtn">
+                添加
+              </div>
+              <div class="ui positive right button" style="display: none;" id="modBtn">
+                    编辑
+              </div>
+            </div>
+          </div>
+
+      
+<script type="text/template" id="row">
+    {{each data}}
+        <tr>
+            <td>
+              <div class="ui ribbon {{$value.isrent ==='000'?'blue':'red'}} label">{{$value.isrent ==='000'?'未租用':'已租用'}}</div>
+                {{$value.id}}
+            </td>
+            <td>{{$value.bname}}</td>
+            <td>{{$value.bprice}}</td>
+            <td>{{$value.ctime}}</td>
+            <td>
+                <a href="edit.html?id={{$value.id}}" data-id={{$value.id}} class="editBtn">编辑</a> 
+                <a href="javascript:;" data-id={{$value.id}} class="delBtn">删除</a>
+            </td>
+        </tr>
+    {{/each}}
+</script>
+</body>
+</html>
